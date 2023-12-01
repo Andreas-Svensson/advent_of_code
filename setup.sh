@@ -32,20 +32,20 @@ boilerplate_code="# day ${day}, {$year}
 
 # read data
 with open('${foldername}/data/${data_file}', 'r') as file:
-    data = file.read() # TODO: format data based on puzzle input here
+    data = file.read()
 
 # review data formatting
 print(data)
 
 # part 1
 def part_one(data):
-    pass
+    return
 
 print(f'Part one: {part_one(data)}')
 
 # part 2
 def part_two(data):
-    pass
+    return
 
 print(f'Part two: {part_two(data)}')
 
