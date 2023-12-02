@@ -9,16 +9,17 @@ with open('2023/data/01.txt', 'r') as file:
 # review data formatting
 print(data)
 
+
 # part 1
 def part_one(data):
     result = 0
-    for text in data:
-        numerical = "".join(re.findall("\d+", text))
+    for line in data:
+        numerical = "".join(re.findall("\d+", line))
         result += int(numerical[0] + numerical[-1])
     return result
 
-
 print(f'Part one: {part_one(data)}')
+
 
 # part 2
 def part_two(data):
@@ -37,11 +38,11 @@ def part_two(data):
     REGEX = f"[1-9]|{'|'.join(key for key in MAP.keys())}"
     
     result = 0
-    for text in data:
-        matching = re.findall(REGEX, text, overlapped=True)
-        first_number = matching[0] if matching[0].isdigit() else MAP[matching[0]]
-        last_number = matching[-1] if matching[-1].isdigit() else MAP[matching[-1]]
-        result += int(first_number + last_number)
+    for line in data:
+        matching = re.findall(REGEX, line, overlapped=True)
+        first_digit = matching[0] if matching[0].isdigit() else MAP[matching[0]]
+        last_digit = matching[-1] if matching[-1].isdigit() else MAP[matching[-1]]
+        result += int(first_digit + last_digit)
     return result
 
 print(f'Part two: {part_two(data)}')
