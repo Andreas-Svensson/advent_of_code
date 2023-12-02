@@ -37,11 +37,13 @@ with open('${foldername}/data/${data_file}', 'r') as file:
 # review data formatting
 print(data)
 
+
 # part 1
 def part_one(data):
     return
 
 print(f'Part one: {part_one(data)}')
+
 
 # part 2
 def part_two(data):
