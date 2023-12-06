@@ -2,20 +2,17 @@
 
 # error message if no argument was passed when running the script
 if [ $# -ne 2 ]; then
-    echo "Please provide the day and year as arguments when running the script."
+    echo "Please provide day and year as arguments"
     exit 1
 fi
 
 # name passed arguments
 day=$1
 year=$2
-foldername=$year
 
-echo "Creating files for day [${day}] in folder [${foldername}]..."
-
-# create target folder and subfolder if they don't exist
-mkdir -p "$foldername"
-mkdir -p "$foldername/data"
+# create folder for year and data subfolder if they don't exist
+mkdir -p "$year"
+mkdir -p "$year/data"
 
 if [ $day -lt 10 ]; then
     filename="0${day}" # prepend 0 to single digit days
@@ -24,36 +21,19 @@ else
 fi
 
 # name of .py and .txt file to be created
-code_file="${foldername}/${filename}.py"
+code_file="${year}/${filename}.py"
 data_file="${filename}.txt"
 
-# boilerplate code to put in .py file
-boilerplate_code="# day ${day}, {$year}
+# code to put in .py file
+code="# day ${day}, {$year}
 
 # read data
-with open('${foldername}/data/${data_file}', 'r') as file:
+with open('${year}/data/${data_file}', 'r') as file:
     data = file.read()
 
-# review data formatting
-print(data)
-
-
-# part 1
-def part_one(data):
-    return
-
-print(f'Part one: {part_one(data)}')
-
-
-# part 2
-def part_two(data):
-    return
-
-print(f'Part two: {part_two(data)}')
-
 "
-# create .py file with boilerplate code, and empty .txt file
-echo "$boilerplate_code" > "$code_file"
-touch "${foldername}/data/${data_file}"
+# write code to .py file, and create empty .txt file
+echo "$code" > "$code_file"
+touch "${year}/data/${data_file}"
 
-echo "Setup finished"
+echo "Created files for day [${day}] in folder [${year}]"
